@@ -93,31 +93,12 @@ export default function RegionCard({ region, data }: RegionCardProps) {
 
       <div className="region-body">
         <div className="rounds-container">
-          {/* Round of 64 */}
-          <div className="round-col">
-            <div className="round-label">Round of 64</div>
-            <div className="round-matches">
-              {r64Matchups.map(([a, b], i) => {
-                const winner = r32Winners.has(a.winner) ? a.winner : r32Winners.has(b.winner) ? b.winner : undefined;
-                return (
-                  <MatchCard
-                    key={i}
-                    teamA={a}
-                    teamB={b}
-                    winner={winner}
-                    regionColor={color}
-                  />
-                );
-              })}
-            </div>
-          </div>
-
           {/* Round of 32 */}
           <div className="round-col">
             <div className="round-label">Round of 32</div>
             <div className="round-matches">
-              {r32Matchups.map(([a, b], i) => {
-                const winner = s16Winners.has(a.winner) ? a.winner : s16Winners.has(b.winner) ? b.winner : undefined;
+              {r64Matchups.map(([a, b], i) => {
+                const winner = r32Winners.has(a.winner) ? a.winner : r32Winners.has(b.winner) ? b.winner : undefined;
                 return (
                   <MatchCard
                     key={i}
@@ -135,14 +116,14 @@ export default function RegionCard({ region, data }: RegionCardProps) {
           <div className="round-col">
             <div className="round-label">Sweet 16</div>
             <div className="round-matches">
-              {data.sweet_16.map((team, i) => {
-                const isElite8Winner = data.elite_8.winner === team.winner;
+              {r32Matchups.map(([a, b], i) => {
+                const winner = s16Winners.has(a.winner) ? a.winner : s16Winners.has(b.winner) ? b.winner : undefined;
                 return (
                   <MatchCard
                     key={i}
-                    teamA={team}
-                    teamB={{ winner: '—', seed: 0 }}
-                    winner={isElite8Winner ? team.winner : undefined}
+                    teamA={a}
+                    teamB={b}
+                    winner={winner}
                     regionColor={color}
                   />
                 );
@@ -153,6 +134,25 @@ export default function RegionCard({ region, data }: RegionCardProps) {
           {/* Elite 8 */}
           <div className="round-col">
             <div className="round-label">Elite 8</div>
+            <div className="round-matches">
+              {(() => {
+                const [a, b] = data.sweet_16;
+                const isElite8Winner = data.elite_8.winner === a.winner || data.elite_8.winner === b.winner;
+                return (
+                  <MatchCard
+                    teamA={a}
+                    teamB={b}
+                    winner={data.elite_8.winner}
+                    regionColor={color}
+                  />
+                );
+              })()}
+            </div>
+          </div>
+
+          {/* Regional Champion */}
+          <div className="round-col">
+            <div className="round-label">Winner</div>
             <div className="round-matches">
               <SingleWinner
                 team={data.elite_8}
