@@ -93,6 +93,20 @@ export default function RegionCard({ region, data }: RegionCardProps) {
 
       <div className="region-body">
         <div className="rounds-container">
+          {/* Round of 64 Winners */}
+          <div className="round-col">
+            <div className="round-label">Round of 64</div>
+            <div className="round-matches">
+              {data.round_of_64.map((team, i) => (
+                <SingleWinner
+                  key={i}
+                  team={team}
+                  regionColor={color}
+                />
+              ))}
+            </div>
+          </div>
+
           {/* Round of 32 */}
           <div className="round-col">
             <div className="round-label">Round of 32</div>
@@ -137,7 +151,6 @@ export default function RegionCard({ region, data }: RegionCardProps) {
             <div className="round-matches">
               {(() => {
                 const [a, b] = data.sweet_16;
-                const isElite8Winner = data.elite_8.winner === a.winner || data.elite_8.winner === b.winner;
                 return (
                   <MatchCard
                     teamA={a}
