@@ -3,6 +3,7 @@
 export interface TeamEntry {
   winner: string;
   seed: number;
+  bet?: 'won' | 'lost';
 }
 
 export interface FirstFourGame {
@@ -11,6 +12,7 @@ export interface FirstFourGame {
   seed: number;
   winner: string;
   probability: number;
+  bet?: 'won' | 'lost';
 }
 
 export interface RegionData {

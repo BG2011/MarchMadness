@@ -11,8 +11,53 @@ interface BracketViewProps {
 export default function BracketView({ bracket, regionConfigs }: BracketViewProps) {
   const { predictions, bracket_type, alternate_info } = bracket;
 
+  // Calculate summary stats
+  const allBets: ('won' | 'lost')[] = [];
+  
+  // First Four
+  predictions.first_four.forEach(g => g.bet && allBets.push(g.bet));
+  
+  // Regions
+  regionConfigs.forEach(rc => {
+    const rd = predictions[rc.key];
+    rd.round_of_64.forEach(t => t.bet && allBets.push(t.bet));
+    rd.round_of_32.forEach(t => t.bet && allBets.push(t.bet));
+    rd.sweet_16.forEach(t => t.bet && allBets.push(t.bet));
+    if (rd.elite_8.bet) allBets.push(rd.elite_8.bet);
+  });
+
+  // Final Four & Championship
+  predictions.final_four.semifinals.forEach(t => t.bet && allBets.push(t.bet));
+  if (predictions.championship.bet) allBets.push(predictions.championship.bet);
+
+  const correct = allBets.filter(b => b === 'won').length;
+  const wrong = allBets.filter(b => b === 'lost').length;
+  const total = allBets.length;
+
   return (
     <>
+      {/* Bracket Summary */}
+      <div className="bracket-summary">
+        <div className="summary-stat correct">
+          <span>Correct:</span>
+          <b>{correct}</b>
+        </div>
+        <div className="summary-stat wrong">
+          <span>Wrong:</span>
+          <b>{wrong}</b>
+        </div>
+        <div className="summary-stat total">
+          <span>Total Matches:</span>
+          <b>{total}</b>
+        </div>
+        {total > 0 && (
+          <div className="summary-stat">
+            <span>Accuracy:</span>
+            <b>{((correct / total) * 100).toFixed(1)}%</b>
+          </div>
+        )}
+      </div>
+
       {/* Info Banner */}
       <div className="bracket-info-banner">
         <span className={`badge ${bracket_type === 'Primary' ? 'badge-primary' : 'badge-alt'}`}>

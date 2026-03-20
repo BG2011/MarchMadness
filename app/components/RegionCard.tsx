@@ -30,11 +30,15 @@ function MatchCard({ teamA, teamB, winner, regionColor }: MatchCardProps) {
       <div className={`match-team${aWins ? ' winner' : ''}`}>
         <div className="match-team-seed">{teamA.seed}</div>
         <span>{teamA.winner}</span>
+        {teamA.bet === 'won' && <span className="bet-status won">✓</span>}
+        {teamA.bet === 'lost' && <span className="bet-status lost">✗</span>}
       </div>
       <div className="match-divider" />
       <div className={`match-team${bWins ? ' winner' : ''}`}>
         <div className="match-team-seed">{teamB.seed}</div>
         <span>{teamB.winner}</span>
+        {teamB.bet === 'won' && <span className="bet-status won">✓</span>}
+        {teamB.bet === 'lost' && <span className="bet-status lost">✗</span>}
       </div>
     </div>
   );
@@ -60,6 +64,8 @@ function SingleWinner({ team, regionColor, label }: SingleWinnerProps) {
       >
         <div className="single-winner-seed">{team.seed}</div>
         <div className="single-winner-name">{team.winner}</div>
+        {team.bet === 'won' && <span className="bet-status won" style={{ marginLeft: 'auto' }}>✓</span>}
+        {team.bet === 'lost' && <span className="bet-status lost" style={{ marginLeft: 'auto' }}>✗</span>}
       </div>
     </div>
   );

@@ -8,39 +8,45 @@
         "team_b": "Texas",
         "seed": 11,
         "winner": "NC State",
-        "probability": 0.5860000252723694
+        "probability": 0.5860000252723694,
+        "bet": "lost"
       },
       {
         "team_a": "Lehigh",
         "team_b": "Prairie View",
         "seed": 16,
         "winner": "Prairie View",
-        "probability": 0.8969
+        "probability": 0.8969,
+        "bet": "won"
       },
       {
         "team_a": "SMU",
         "team_b": "Miami OH",
         "seed": 11,
         "winner": "SMU",
-        "probability": 0.9947999715805054
+        "probability": 0.9947999715805054,
+        "bet": "lost"
       },
       {
         "team_a": "Howard",
         "team_b": "UMBC",
         "seed": 16,
         "winner": "Howard",
-        "probability": 0.9128000140190125
+        "probability": 0.9128000140190125,
+        "bet": "won"
       }
     ],
     "east": {
       "round_of_64": [
         {
           "winner": "Duke",
-          "seed": 1
+          "seed": 1,
+          "bet": "won"
         },
         {
           "winner": "Ohio State",
-          "seed": 8
+          "seed": 8,
+          "bet": "lost"
         },
         {
           "winner": "St John's",
@@ -52,11 +58,13 @@
         },
         {
           "winner": "Louisville",
-          "seed": 6
+          "seed": 6,
+          "bet": "won"
         },
         {
           "winner": "Michigan St",
-          "seed": 3
+          "seed": 3,
+          "bet": "won"
         },
         {
           "winner": "UCF",
@@ -112,27 +120,33 @@
         },
         {
           "winner": "Vanderbilt",
-          "seed": 5
+          "seed": 5,
+          "bet": "won"
         },
         {
           "winner": "Nebraska",
-          "seed": 4
+          "seed": 4,
+          "bet": "won"
         },
         {
           "winner": "North Carolina",
-          "seed": 6
+          "seed": 6,
+          "bet": "lost"
         },
         {
           "winner": "Illinois",
-          "seed": 3
+          "seed": 3,
+          "bet": "won"
         },
         {
           "winner": "Saint Mary's",
-          "seed": 7
+          "seed": 7,
+          "bet": "lost"
         },
         {
           "winner": "Houston",
-          "seed": 2
+          "seed": 2,
+          "bet": "won"
         }
       ],
       "round_of_32": [
@@ -180,19 +194,23 @@
         },
         {
           "winner": "Wisconsin",
-          "seed": 5
+          "seed": 5,
+          "bet": "lost"
         },
         {
           "winner": "Arkansas",
-          "seed": 4
+          "seed": 4,
+          "bet": "won"
         },
         {
           "winner": "BYU",
-          "seed": 6
+          "seed": 6,
+          "bet": "lost"
         },
         {
           "winner": "Gonzaga",
-          "seed": 3
+          "seed": 3,
+          "bet": "won"
         },
         {
           "winner": "Miami",
@@ -240,11 +258,13 @@
       "round_of_64": [
         {
           "winner": "Michigan",
-          "seed": 1
+          "seed": 1,
+          "bet": "won"
         },
         {
           "winner": "Georgia",
-          "seed": 8
+          "seed": 8,
+          "bet": "lost"
         },
         {
           "winner": "Texas Tech",

@@ -16,7 +16,12 @@ export default function FirstFourSection({ games }: FirstFourSectionProps) {
                 {game.seed}
               </div>
               {game.team_a}
-              {game.winner === game.team_a && <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: 'var(--accent-green)' }}>✓</span>}
+              {game.winner === game.team_a && game.bet === 'won' && (
+                <span className="bet-status won">✓</span>
+              )}
+              {game.winner === game.team_a && game.bet === 'lost' && (
+                <span className="bet-status lost">✗</span>
+              )}
             </div>
             <div className="ff-vs">vs</div>
             <div className={`ff-team-row${game.winner === game.team_b ? ' is-winner' : ''}`}>
@@ -24,7 +29,12 @@ export default function FirstFourSection({ games }: FirstFourSectionProps) {
                 {game.seed}
               </div>
               {game.team_b}
-              {game.winner === game.team_b && <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: 'var(--accent-green)' }}>✓</span>}
+              {game.winner === game.team_b && game.bet === 'won' && (
+                <span className="bet-status won">✓</span>
+              )}
+              {game.winner === game.team_b && game.bet === 'lost' && (
+                <span className="bet-status lost">✗</span>
+              )}
             </div>
           </div>
           <div className="ff-prob">
