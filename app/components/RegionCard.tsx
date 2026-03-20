@@ -19,10 +19,11 @@ interface MatchCardProps {
   teamA: TeamEntry;
   teamB: TeamEntry;
   winner?: string;
+  winnerBet?: 'won' | 'lost';
   regionColor: string;
 }
 
-function MatchCard({ teamA, teamB, winner, regionColor }: MatchCardProps) {
+function MatchCard({ teamA, teamB, winner, winnerBet, regionColor }: MatchCardProps) {
   const aWins = winner === teamA.winner;
   const bWins = winner === teamB.winner;
   return (
@@ -30,15 +31,15 @@ function MatchCard({ teamA, teamB, winner, regionColor }: MatchCardProps) {
       <div className={`match-team${aWins ? ' winner' : ''}`}>
         <div className="match-team-seed">{teamA.seed}</div>
         <span>{teamA.winner}</span>
-        {teamA.bet === 'won' && <span className="bet-status won">✓</span>}
-        {teamA.bet === 'lost' && <span className="bet-status lost">✗</span>}
+        {aWins && winnerBet === 'won' && <span className="bet-status won">✓</span>}
+        {aWins && winnerBet === 'lost' && <span className="bet-status lost">✗</span>}
       </div>
       <div className="match-divider" />
       <div className={`match-team${bWins ? ' winner' : ''}`}>
         <div className="match-team-seed">{teamB.seed}</div>
         <span>{teamB.winner}</span>
-        {teamB.bet === 'won' && <span className="bet-status won">✓</span>}
-        {teamB.bet === 'lost' && <span className="bet-status lost">✗</span>}
+        {bWins && winnerBet === 'won' && <span className="bet-status won">✓</span>}
+        {bWins && winnerBet === 'lost' && <span className="bet-status lost">✗</span>}
       </div>
     </div>
   );
@@ -118,13 +119,15 @@ export default function RegionCard({ region, data }: RegionCardProps) {
             <div className="round-label">Round of 32</div>
             <div className="round-matches">
               {r64Matchups.map(([a, b], i) => {
-                const winner = r32Winners.has(a.winner) ? a.winner : r32Winners.has(b.winner) ? b.winner : undefined;
+                const winnerName = r32Winners.has(a.winner) ? a.winner : r32Winners.has(b.winner) ? b.winner : undefined;
+                const winnerEntry = data.round_of_32.find(t => t.winner === winnerName);
                 return (
                   <MatchCard
                     key={i}
                     teamA={a}
                     teamB={b}
-                    winner={winner}
+                    winner={winnerName}
+                    winnerBet={winnerEntry?.bet}
                     regionColor={color}
                   />
                 );
@@ -137,13 +140,15 @@ export default function RegionCard({ region, data }: RegionCardProps) {
             <div className="round-label">Sweet 16</div>
             <div className="round-matches">
               {r32Matchups.map(([a, b], i) => {
-                const winner = s16Winners.has(a.winner) ? a.winner : s16Winners.has(b.winner) ? b.winner : undefined;
+                const winnerName = s16Winners.has(a.winner) ? a.winner : s16Winners.has(b.winner) ? b.winner : undefined;
+                const winnerEntry = data.sweet_16.find(t => t.winner === winnerName);
                 return (
                   <MatchCard
                     key={i}
                     teamA={a}
                     teamB={b}
-                    winner={winner}
+                    winner={winnerName}
+                    winnerBet={winnerEntry?.bet}
                     regionColor={color}
                   />
                 );
@@ -162,6 +167,7 @@ export default function RegionCard({ region, data }: RegionCardProps) {
                     teamA={a}
                     teamB={b}
                     winner={data.elite_8.winner}
+                    winnerBet={data.elite_8.bet}
                     regionColor={color}
                   />
                 );
