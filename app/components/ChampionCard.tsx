@@ -32,7 +32,11 @@ export default function ChampionCard({ champion, finalFour, eliteEight }: Champi
       <div className="champion-trophy">🏆</div>
       <div>
         <div className="champion-label">Predicted Champion</div>
-        <div className="champion-name">{champion.winner}</div>
+        <div className="champion-name">
+          {champion.winner}
+          {champion.bet === 'won' && <span className="bet-status won" style={{ marginLeft: '1rem' }}>✓</span>}
+          {champion.bet === 'lost' && <span className="bet-status lost" style={{ marginLeft: '1rem' }}>✗</span>}
+        </div>
         <div className="champion-seed">
           Seed <span>#{champion.seed}</span>
         </div>
@@ -43,6 +47,7 @@ export default function ChampionCard({ champion, finalFour, eliteEight }: Champi
         <div className="ff-teams">
           {finalFourTeams.map((team, i) => {
             const isFinalist = semifinalTeams.some(t => t.winner === team.winner);
+            const teamBet = semifinalTeams.find(t => t.winner === team.winner)?.bet;
             return (
               <div 
                 className="ff-team-chip" 
@@ -54,7 +59,9 @@ export default function ChampionCard({ champion, finalFour, eliteEight }: Champi
               >
                 <span className="seed-badge">#{team.seed}</span>
                 {team.winner}
-                {isFinalist && <span style={{ fontSize: '0.6rem', color: 'var(--accent-gold)' }}>★</span>}
+                {isFinalist && <span style={{ fontSize: '0.6rem', color: 'var(--accent-gold)', marginLeft: '0.25rem' }}>★</span>}
+                {teamBet === 'won' && <span className="bet-status won" style={{ fontSize: '0.65rem', marginLeft: '0.4rem' }}>✓</span>}
+                {teamBet === 'lost' && <span className="bet-status lost" style={{ fontSize: '0.65rem', marginLeft: '0.4rem' }}>✗</span>}
               </div>
             );
           })}
@@ -69,6 +76,8 @@ export default function ChampionCard({ champion, finalFour, eliteEight }: Champi
             >
               <span className="seed-badge" style={{ color: 'var(--text-muted)' }}>#{team.seed}</span>
               {team.winner}
+              {team.bet === 'won' && <span className="bet-status won" style={{ fontSize: '0.65rem', marginLeft: '0.4rem' }}>✓</span>}
+              {team.bet === 'lost' && <span className="bet-status lost" style={{ fontSize: '0.65rem', marginLeft: '0.4rem' }}>✗</span>}
             </div>
           ))}
         </div>
