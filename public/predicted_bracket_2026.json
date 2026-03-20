@@ -186,7 +186,8 @@
       "round_of_64": [
         {
           "winner": "Arizona",
-          "seed": 1
+          "seed": 1,
+          "bet": "won"
         },
         {
           "winner": "Utah State",
@@ -281,7 +282,8 @@
         },
         {
           "winner": "Virginia",
-          "seed": 3
+          "seed": 3,
+          "bet": "won"
         },
         {
           "winner": "Kentucky",
