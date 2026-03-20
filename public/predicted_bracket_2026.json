@@ -268,7 +268,8 @@
         },
         {
           "winner": "Texas Tech",
-          "seed": 5
+          "seed": 5,
+          "bet": "won"
         },
         {
           "winner": "Alabama",
@@ -284,7 +285,8 @@
         },
         {
           "winner": "Kentucky",
-          "seed": 7
+          "seed": 7,
+          "bet": "won"
         },
         {
           "winner": "Iowa State",
